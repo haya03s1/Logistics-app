@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipment Company Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #95b1ee;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #95b1ee;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        form label {
+            font-size: 1.1rem;
+            margin-top: 15px;
+            color: #364c84;
+            font-weight: bold;
+        }
+
+        form input, form textarea, form button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        form input:focus, form textarea:focus {
+            border-color: #364c84;
+            box-shadow: 0 0 8px #364c84;
+        }
+
+        form button {
+            background-color: #364c84;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        form button:hover {
+            background-color: #2c3e68;
+            transform: translateY(-2px);
+        }
+
+        .subscription-info {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #333;
+            background-color: #eff2fb;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .subscription-info p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            form input, form textarea, form button {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .subscription-info {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shipment Company Login</h1>
+        <form id="shipment-login-form">
+            <label for="name">Company Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="contact">Contact Person</label>
+            <input type="text" id="contact" name="contact" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="services">Services Offered</label>
+            <textarea id="services" name="services" rows="4" required></textarea>
+
+            <div class="subscription-info">
+                <p><strong>Annual Subscription Fee:</strong> SAR 5,000</p>
+                <p>This is the fee that every shipment company needs to pay annually to access the Smart Logistics platform.</p>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        // Form submission handler for Shipment Company login
+        document.getElementById('shipment-login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting in the default way
+
+            const companyName = document.getElementById('name').value;
+            alert(`Welcome back, ${companyName}! You have successfully logged in.`);
+
+            // Optionally, reset the form fields after submission
+            document.getElementById('shipment-login-form').reset();
+        });
+    </script>
+</body>
+</html>
