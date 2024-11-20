@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory A Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1{
+            text-align: center;
+            color: #95b1ee;
+            margin-bottom: 20px;
+        } 
+        h2, h3 {
+            text-align: center;
+            color: #364c84;
+            margin-bottom: 20px;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #364c84;
+            padding: 2px ;
+            color: white;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #95b1ee;
+        }
+
+        /* Form styles */
+        form {
+            background-color: #95b1ee;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        form label {
+            font-size: 1.1rem;
+            margin-top: 15px;
+            color: #364c84;
+            font-weight: bold;
+        }
+
+        form input, form textarea, form button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        form input:focus, form textarea:focus {
+            border-color: #364c84;
+            box-shadow: 0 0 8px #364c84;
+        }
+
+        form button {
+            background-color: #364c84;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        form button:hover {
+            background-color: #364c84;
+            transform: translateY(-2px);
+        }
+
+        /* Banner styles for dynamic section */
+        .banner {
+            text-align: center;
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        /* Details section styles */
+        .details {
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid whitesmoke;
+            border-radius: 5px;
+            background: #95b1ee;
+            max-width: 500px;
+        }
+
+        .details h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .details p {
+            font-size: 1rem;
+            margin: 10px 0;
+            color: white;
+        }
+
+        footer {
+            background-color: #364c84;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 1rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .container h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Factory A Login</h1>
+        </div>
+    </header>
+
+    <main>
+        <!-- Login Info Form -->
+        <section id="login-info">
+            <div class="container">
+                <h2>Login Information</h2>
+                <form id="login-form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Additional Info Form -->
+        <section id="additional-info" style="display: none;">
+            <div class="container">
+                <h2>Additional Information</h2>
+                <form id="additional-info-form">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" required>
+
+                    <label for="material">Kind of Shipment Material</label>
+                    <input type="text" id="material" name="material" required>
+
+                    <label for="notes">Shipment Notes</label>
+                    <textarea id="notes" name="notes" rows="4"></textarea>
+
+                    <button type="submit">Submit Info</button>
+                    <button type="button" id="skip-button">Skip and Go to Shopping</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Banner and Storage Info (Initially Hidden) -->
+        <section id="storage-found-placeholder" style="display: none;">
+            <div class="container">
+                <div class="banner">Storage Found!</div>
+                <div class="details">
+                    <h3>Storage Details</h3>
+                    <p><strong>Location:</strong> Jubail</p>
+                    <p><strong>Size:</strong> 500 square meters</p>
+                    <p><strong>Material Type:</strong> Chemicals</p>
+                    <p><strong>Annual Subscription Price:</strong> 18,750 SAR</p>
+                    <img src="images/tracking.png" alt="Driver's location">
+
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Smart Logistics App. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Handle Login Form Submit
+        const loginForm = document.getElementById('login-form');
+        const additionalInfoForm = document.getElementById('additional-info-form');
+        const skipButton = document.getElementById('skip-button');
+        const storagePlaceholder = document.getElementById('storage-found-placeholder');
+   
+        // Store user's name in localStorage
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            localStorage.setItem('userName', name);  // Save name in localStorage
+
+            // Move to the next section
+            document.getElementById('login-info').style.display = 'none';
+            document.getElementById('additional-info').style.display = 'block';
+        });
+
+        // Handle additional info submission
+        additionalInfoForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Display storage details after form submission
+            storagePlaceholder.style.display = 'block';
+        });
+
+        // Skip and Go to Shopping functionality
+        skipButton.addEventListener('click', function() {
+            window.location.href = 'shopping.html';  // Redirect to shopping page
+        });
+
+        // When the form is submitted, store the factory name in localStorage
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const factoryName = document.getElementById('factoryName').value;
+            localStorage.setItem('factoryName', factoryName);
+            window.location.href = 'shopping.html'; // Redirect to shopping page
+        });
+    </script>
+</body>
+</html>

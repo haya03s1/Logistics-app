@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Choices</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            width: 80%;
+            max-width: 700px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px white
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #364c84;
+            margin-bottom: 40px; /* Add some space below the heading */
+        }
+
+        .factory-options {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap; /* Ensure it wraps to the next line if the space is too small */
+            gap: 20px;
+        }
+
+        .factory, .shipment {
+            background-color: #364c84;
+            padding: 20px;
+            border-radius: 8px;
+            width: 45%;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Add space between elements when wrapping */
+        }
+
+        .factory h2, .shipment h2 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .factory p, .shipment p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .factory button, .shipment button {
+            background-color: #95b1ee;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .factory button:hover, .shipment button:hover {
+            background-color: #95b1ee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome Back!</h1>
+        <div class="factory-options">
+            <div class="factory">
+                <h2>Factory A</h2>
+                <p>Factory A is for companies that need extra space to store their goods.</p>
+                <button onclick="location.href='factory_a_login.html'">Proceed to Factory A</button>
+            </div>
+            <div class="factory">
+                <h2>Factory B</h2>
+                <p>Factory B is for companies offering extra space for other businesses.</p>
+                <button onclick="location.href='factory_b_login.html'">Proceed to Factory B</button>
+            </div>
+            <div class="shipment">
+                <h2>Shipment Company</h2>
+                <p>Shipment companies coordinate logistics and transportation of goods.</p>
+                <button onclick="location.href='shipment_login.html'">Proceed to Shipment Company</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory B Shopping</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #364c84;
+            margin: 0;
+        }
+
+        header {
+            background-color: #364c84;
+            padding: 30px 0;
+            text-align: center;
+            color: white;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .panel {
+            background-color: #95b1ee;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .popup, .banner {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content, .banner-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .banner-content p {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #364c84;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #364c84;
+            color: white;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #2d3e6b;
+        }
+
+        .cart-items p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Factory Shopping</h1>
+    </header>
+
+    <main class="container">
+        <h2>Welcome <span id="factory-name"></span>!</h2>
+        
+        <p><strong>Annual Subscription Price:</strong> 18,750 SAR</p>
+
+        <!-- Material Options -->
+        <div class="panel">
+            <h3>Choose Materials</h3>
+            <label for="material-select">Material:</label>
+            <select id="material-select">
+                <option value="Steel-100">Steel (100 SAR per unit)</option>
+                <option value="Aluminum-150">Aluminum (150 SAR per unit)</option>
+                <option value="Plastic-50">Plastic (50 SAR per unit)</option>
+            </select>
+
+            <label for="material-amount">Amount:</label>
+            <input type="number" id="material-amount" min="1" value="1">
+
+            <button id="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Cart -->
+        <div class="panel">
+            <h3>Your Cart</h3>
+            <div class="cart-items">
+                <h4>Annual Subscription: 18,750 SAR</h4>
+            </div>
+            <p class="cart-total">Total: 18,750 SAR</p>
+            <button id="checkout">Checkout</button>
+        </div>
+    </main>
+
+    <!-- Popup for Database Access -->
+    <div class="popup" id="popup-overlay">
+        <div class="popup-content">
+            <p>Do you allow access to your database info?</p>
+            <p><a href="#">Read our terms and conditions</a></p>
+            <input type="checkbox" id="accept-terms"> I accept the terms and conditions
+            <br><br>
+            <button id="yes-access">Yes</button>
+            <button id="no-access">No</button>
+        </div>
+    </div>
+
+    <!-- Banner for Last Week's Purchase -->
+    <div class="banner" id="last-week-banner">
+        <div class="banner-content">
+            <p>Last week, you purchased 10x Aluminum @ 150 SAR each. Do you want to add it to your cart?</p>
+            <button id="add-last-week">Add</button>
+            <button id="decline-last-week">No, Thanks</button>
+        </div>
+    </div>
+
+    <!-- Database Connected Message -->
+    <div class="popup" id="connected-overlay">
+        <div class="popup-content">
+            <p>Database has been connected successfully!</p>
+            <button id="close-connected">Close</button>
+        </div>
+    </div>
+
+    <script>
+        const factoryNameDisplay = document.getElementById('factory-name');
+        const factoryNameInput = document.getElementById('factory-name-input');
+        const saveFactoryNameButton = document.getElementById('save-factory-name');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const connectedOverlay = document.getElementById('connected-overlay');
+        const lastWeekBanner = document.getElementById('last-week-banner');
+        const acceptTerms = document.getElementById('accept-terms');
+        const cartItemsContainer = document.querySelector('.cart-items');
+        const cartTotalDisplay = document.querySelector('.cart-total');
+        let cart = [];
+        let total = 18750;
+
+        // Show popup for database access
+        setTimeout(() => {
+            popupOverlay.style.display = 'flex';
+        }, 1000);
+
+        // Handle "Yes" for database access
+        document.getElementById('yes-access').addEventListener('click', () => {
+            if (!acceptTerms.checked) {
+                alert('You must accept the terms and conditions to proceed.');
+                return;
+            }
+            popupOverlay.style.display = 'none';
+            connectedOverlay.style.display = 'flex';
+        });
+
+        // Handle "No" for database access
+        document.getElementById('no-access').addEventListener('click', () => {
+            popupOverlay.style.display = 'none';
+        });
+
+        // Close database connected message
+        document.getElementById('close-connected').addEventListener('click', () => {
+            connectedOverlay.style.display = 'none';
+            lastWeekBanner.style.display = 'flex';
+        });
+
+        // Add last week's purchase
+        document.getElementById('add-last-week').addEventListener('click', () => {
+            const lastWeekItem = { name: 'Aluminum', price: 150, amount: 10 };
+            cart.push(lastWeekItem);
+            total += lastWeekItem.price * lastWeekItem.amount;
+            updateCartDisplay();
+            lastWeekBanner.style.display = 'none';
+        });
+
+        // Decline last week's purchase
+        document.getElementById('decline-last-week').addEventListener('click', () => {
+            lastWeekBanner.style.display = 'none';
+        });
+
+        // Add materials to cart
+        document.getElementById('add-to-cart').addEventListener('click', () => {
+            const selectedMaterial = document.getElementById('material-select').value.split('-');
+            const materialName = selectedMaterial[0];
+            const materialPrice = parseInt(selectedMaterial[1], 10);
+            const materialAmount = parseInt(document.getElementById('material-amount').value, 10);
+            cart.push({ name: materialName, price: materialPrice, amount: materialAmount });
+            total += materialPrice * materialAmount;
+            updateCartDisplay();
+        });
+
+        // Update cart display
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '<h4>Annual Subscription: 18,750 SAR</h4>';
+            cart.forEach(item => {
+                const itemDisplay = document.createElement('p');
+                itemDisplay.textContent = `${item.amount}x ${item.name} @ ${item.price} SAR each`;
+                cartItemsContainer.appendChild(itemDisplay);
+            });
+            cartTotalDisplay.textContent = `Total: ${total} SAR`;
+        }
+
+        // Checkout
+        document.getElementById('checkout').addEventListener('click', () => {
+            alert(`Thank you for your purchase! Total: ${total} SAR`);
+            cart = [];
+            total = 18750;
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>
